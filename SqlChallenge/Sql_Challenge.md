@@ -1,44 +1,161 @@
 ﻿**City-Dataset:[https://docs.google.com/spreadsheets/d/1dk9kRwcMxj5USuJqxtITD05S-aOUD6fzNzV W41dcpgc/edit?usp=sharing**](https://docs.google.com/spreadsheets/d/1dk9kRwcMxj5USuJqxtITD05S-aOUD6fzNzVW41dcpgc/edit?usp=sharing)**
 
-**Q1**. Query all columns for all American cities in the CITY table with populations larger than 100000. The CountryCode for America is USA.
+## **Q1**. Query all columns for all American cities in the CITY table with populations larger than 100000. The CountryCode for America is USA.
+
+The CITY table is described as follows:
+<pre>+-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| ID          | int  | YES  |     | NULL    |       |
+| NAME        | text | YES  |     | NULL    |       |
+| COUNTRYCODE | text | YES  |     | NULL    |       |
+| DISTRICT    | text | YES  |     | NULL    |       |
+| POPULATION  | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+</pre>
+
+```sql
+SELECT * FROM City 
+WHERE COUNTRYCODE = "USA" AND POPULATION > 100000;
+```
+<pre>+------+---------------+-------------+------------+------------+
+| ID   | NAME          | COUNTRYCODE | DISTRICT   | POPULATION |
++------+---------------+-------------+------------+------------+
+| 3815 | El Paso       | USA         | Texas      | 563662     |
+| 3878 | Scottsdale    | USA         | Arizona    | 202705     |
+| 3965 | Corona        | USA         | California | 124966     |
+| 3973 | Concord       | USA         | California | 121780     |
+| 3977 | Cedar Rapids  | USA         | Iowa       | 120758     |
+| 3982 | Coral Springs | USA         | Florida    | 117549     |
++------+---------------+-------------+------------+------------+</pre>
+
+
+
+## **Q2**. Query the NAME field for all American cities in the CITY table with populations larger than 120000. The CountryCode for America is USA.
 
 The CITY table is described as follows:
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.001.png)
+<pre>+-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| ID          | int  | YES  |     | NULL    |       |
+| NAME        | text | YES  |     | NULL    |       |
+| COUNTRYCODE | text | YES  |     | NULL    |       |
+| DISTRICT    | text | YES  |     | NULL    |       |
+| POPULATION  | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+</pre>
+```sql
+SELECT NAME FROM City 
+WHERE COUNTRYCODE = "USA" AND POPULATION > 120000;
+```
 
-**Q2**. Query the NAME field for all American cities in the CITY table with populations larger than 120000. The CountryCode for America is USA.
 
-The CITY table is described as follows:
+<PRE>+--------------+
+| NAME         |
++--------------+
+| El Paso      |
+| Scottsdale   |
+| Corona       |
+| Concord      |
+| Cedar Rapids |
++--------------+</PRE>
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.001.png)
 
-**Q3.** Query all columns (attributes) for every row in the CITY table. The CITY table is described as follows:
+## **Q3.** Query all columns (attributes) for every row in the CITY table. The CITY table is described as follows:
+<pre>+-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| ID          | int  | YES  |     | NULL    |       |
+| NAME        | text | YES  |     | NULL    |       |
+| COUNTRYCODE | text | YES  |     | NULL    |       |
+| DISTRICT    | text | YES  |     | NULL    |       |
+| POPULATION  | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+</pre>
+```sql
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.001.png)
+```
 
 **Q4**. Query all columns for a city in CITY with the ID 1661. The CITY table is described as follows:
+<pre>
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| ID          | int  | YES  |     | NULL    |       |
+| NAME        | text | YES  |     | NULL    |       |
+| COUNTRYCODE | text | YES  |     | NULL    |       |
+| DISTRICT    | text | YES  |     | NULL    |       |
+| POPULATION  | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+</pre>
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.001.png)
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q5**. Query all attributes of every Japanese city in the CITY table. The COUNTRYCODE for Japan is JPN.
 
 The CITY table is described as follows:
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.001.png)
+<pre>+-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| ID          | int  | YES  |     | NULL    |       |
+| NAME        | text | YES  |     | NULL    |       |
+| COUNTRYCODE | text | YES  |     | NULL    |       |
+| DISTRICT    | text | YES  |     | NULL    |       |
+| POPULATION  | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+</pre>
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q6.** Query the names of all the Japanese cities in the CITY table. The COUNTRYCODE for Japan is JPN.
 
 The CITY table is described as follows:
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.001.png)
+<pre>+-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| ID          | int  | YES  |     | NULL    |       |
+| NAME        | text | YES  |     | NULL    |       |
+| COUNTRYCODE | text | YES  |     | NULL    |       |
+| DISTRICT    | text | YES  |     | NULL    |       |
+| POPULATION  | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+</pre>
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **station-table:[https://docs.google.com/spreadsheets/d/1sHPhE7walQD5mL7ppFNqybyoOJY3E51N0 cWYzhp2UH4/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1sHPhE7walQD5mL7ppFNqybyoOJY3E51N0cWYzhp2UH4/edit?usp=sharing)**
 
 **Q7.** Query a list of CITY and STATE from the STATION table. The STATION table is described as follows:
 
-![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.002.png)
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q8.** Query a list of CITY names from STATION for cities that have an even ID number. Print the results in any order, but exclude duplicates from the answer.
 
@@ -48,6 +165,14 @@ The STATION table is described as follows:
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q9**. Find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
 
 The STATION table is described as follows:
@@ -58,6 +183,14 @@ where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 For example, if there are three records in the table with CITY values 'New York', 'New York', 'Bengalaru', there are 2 different city names: 'New York' and 'Bengalaru'. The query returns , because total number of records - number of unique city names = 3-2 =1
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q10.** Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
 
 The STATION table is described as follows:
@@ -80,6 +213,15 @@ Note
 
 You can write two separate queries to get the desired output. It need not be a single query.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q11**. Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
 
 Input Format
@@ -89,6 +231,15 @@ The STATION table is described as follows:
 ![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.002.png)
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q12.** Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 
@@ -100,6 +251,15 @@ The STATION table is described as follows:
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q13.** Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
 
 Input Format
@@ -109,6 +269,15 @@ The STATION table is described as follows:
 ![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.002.png)
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q14.** Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
 
@@ -120,6 +289,15 @@ The STATION table is described as follows:
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q15.** Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
 
 Input Format
@@ -130,6 +308,15 @@ The STATION table is described as follows:
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q16.** Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
 
 Input Format
@@ -139,6 +326,15 @@ The STATION table is described as follows:
 ![](Aspose.Words.254e662a-37d6-48f8-aefb-5071fb1c05c8.002.png)
 
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q17.**
 
@@ -204,6 +400,15 @@ The product with id 2 was sold in the spring of 2019 but was also sold after the
 
 We return only product 1 as it is the product that was only sold in the spring of 2019.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q18.**
 
 Table: Views
@@ -241,6 +446,17 @@ Output:
 | - |
 |4|
 |7|
+
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q19.**
 
 Table: Delivery
@@ -277,6 +493,15 @@ Output:
 | - |
 |33.33|
 Explanation: The orders with delivery id 2 and 3 are immediate while the others are scheduled.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q20.** Table: Ads
 
@@ -333,6 +558,15 @@ for ad\_id = 3, ctr = (1/(1+1)) \* 100 = 50.00
 
 for ad\_id = 5, ctr = 0.00, Note that ad\_id = 5 has no clicks or views. Note that we do not care about Ignored Ads.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q21.**
 
 Table: Employee
@@ -374,6 +608,15 @@ Output:
 Explanation:
 
 Employees with Id 1,2,3 are part of a team with team\_id = 8. An employee with Id 4 is part of a team with team\_id = 7. Employees with Id 5,6 are part of a team with team\_id = 9.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q22.**
 
@@ -463,6 +706,15 @@ Average weather\_state in Morocco in November is (25 + 27 + 31) / 3 = 27.667 so 
 
 We know nothing about the average weather\_state in Spain in November so we do not include it in the result table.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q23.**
 
 Table: Prices
@@ -519,6 +771,14 @@ Output:
 Explanation:
 
 Average selling price = Total Price of Product / Number of products sold. Average selling price for product 1 = ((100 \* 5) + (15 \* 20)) / 115 = 6.96 Average selling price for product 2 = ((200 \* 15) + (30 \* 30)) / 230 = 16.96
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q24.**
 
@@ -556,6 +816,15 @@ Output:
 |1|2016-03-01|
 |2|2017-06-25|
 |3|2016-03-02|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q25.**
 
 Table: Activity
@@ -592,6 +861,14 @@ Output:
 |1|2|
 |2|3|
 |3|1|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q26.**
 
 Table: Products
@@ -660,6 +937,14 @@ Products with product\_id = 1 is ordered in February a total of (60 + 70) = 130.
 Products with product\_id = 3 is ordered in February a total of (2 + 3) = 5. Products with product\_id = 4 was not ordered in February 2020.
 
 Products with product\_id = 5 is ordered in February a total of (50 + 50) = 100.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q27.**
 
@@ -708,6 +993,14 @@ Explanation:
 The mail of user 2 does not have a domain.
 
 The mail of user 5 has the # sign which is not allowed. The mail of user 6 does not have the leetcode domain. The mail of user 7 starts with a period.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q28**.
 
@@ -794,6 +1087,15 @@ Explanation:
 
 Winston spent $300 (300 \* 1) in June and $100 ( 10 \* 1 + 45 \* 2) in July 2020. Jonathan spent $600 (300 \* 2) in June and $20 ( 2 \* 10) in July 2020. Moustafa spent $110 (10 \* 2 + 45 \* 2) in June and $0 in July 2020.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q29**.
 
 Table: TVProgram
@@ -856,6 +1158,15 @@ Explanation:
 "Database Sols" is not a movie
 
 "Alladin" is a movie, content for kids and was streamed in June 2020. "Cinderella" was not streamed in June 2020.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q30.**
 
@@ -924,6 +1235,15 @@ Explanation:
 
 The npv value of (7, 2018) is not present in the NPV table, we consider it 0. The npv values of all other queries can be found in the NPV table.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q31.** Table: NPV
 
 |Column Name|Type|
@@ -989,6 +1309,15 @@ Explanation:
 
 The npv value of (7, 2018) is not present in the NPV table, we consider it 0. The npv values of all other queries can be found in the NPV table.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q32.**
 
 Table: Employees
@@ -1051,6 +1380,15 @@ Alice and Bob do not have a unique ID, We will show null instead. The unique ID 
 The unique ID of Winston is 3.
 
 The unique ID of Jonathan is 1.
+
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q33.**
 
@@ -1125,6 +1463,15 @@ Bob, Jonathan, Alex, and Alice have only one ride and we just order them by the 
 
 Donald did not have any rides, the distance travelled by him is 0.
 
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
+
 **Q34.**
 
 Table: Products
@@ -1164,6 +1511,14 @@ Input: Products table:
 |3|HP|Laptop|
 |4|Lenovo|Laptop|
 |5|Leetcode Kit|T-shirt|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q35.**
 
 Table: Movies
@@ -1242,6 +1597,14 @@ Explanation:
 Daniel and Monica have rated 3 movies ("Avengers", "Frozen 2" and "Joker") but Daniel is smaller lexicographically.
 
 Frozen 2 and Joker have a rating average of 3.5 in February but Frozen 2 is smaller lexicographically.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q36.**
 
@@ -1315,6 +1678,14 @@ Elvis and Lee travelled 450 miles, Elvis is the top traveller as his name is alp
 Bob, Jonathan, Alex, and Alice have only one ride and we just order them by the total distances of the ride.
 
 Donald did not have any rides, the distance travelled by him is 0.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q37.**
 
@@ -1376,6 +1747,14 @@ Alice and Bob do not have a unique ID, We will show null instead. The unique ID 
 The unique ID of Winston is 3.
 
 The unique ID of Jonathan is 1.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q38.**
 
@@ -1438,6 +1817,14 @@ Output:
 Explanation:
 
 John, Daiana, Steve, and Jasmine are enrolled in departments 14, 33, 74, and 77 respectively. Department 14, 33, 74, and 77 do not exist in the Departments table.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q39.** Table: Calls
 
@@ -1481,6 +1868,14 @@ Users 1 and 2 had 2 calls and the total duration is 70 (59 + 11).
 Users 1 and 3 had 1 call and the total duration is 20.
 
 Users 3 and 4 had 4 calls and the total duration is 999 (100 + 200 + 200 + 499).
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q40.**
 
@@ -1540,6 +1935,14 @@ Output:
 Explanation:
 
 Average selling price = Total Price of Product / Number of products sold. Average selling price for product 1 = ((100 \* 5) + (15 \* 20)) / 115 = 6.96 Average selling price for product 2 = ((200 \* 15) + (30 \* 30)) / 230 = 16.96
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q41.**
 
@@ -1598,6 +2001,14 @@ Output:
 |LCHouse1|12250|
 |LCHouse2|20250|
 |LCHouse3|800|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q42.**
 
 Table: Sales
@@ -1638,6 +2049,14 @@ Output:
 Explanation:
 
 Day 2020-05-01, 10 apples and 8 oranges were sold (Difference  10 - 8 = 2). Day 2020-05-02, 15 apples and 15 oranges were sold (Difference 15 - 15 = 0). Day 2020-05-03, 20 apples and 0 oranges were sold (Difference 20 - 0 = 20). Day 2020-05-04, 15 apples and 16 oranges were sold (Difference 15 - 16 = -1).
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q43.**
 
@@ -1676,6 +2095,14 @@ Output:
 Explanation:
 
 Only the player with id 1 logged back in after the first day he had logged in so the answer is 1/3 = 0.33
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q44.**
 
@@ -1714,6 +2141,14 @@ Output:
 |name|
 | - |
 |John|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q45.**
 
 Table: Student
@@ -1767,6 +2202,14 @@ Output:
 |Engineering|2|
 |Science|1|
 |Law|0|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q46.**
 
 Table: Customer
@@ -1814,6 +2257,14 @@ Output:
 Explanation:
 
 The customers who bought all the products (5 and 6) are customers with IDs 1 and 3.\
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q47.**
 
@@ -1875,6 +2326,14 @@ Output:
 Explanation:
 
 Both employees with id 1 and 3 have the most experience among the employees of the first project. For the second project, the employee with id 1 has the most experience.
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 
 **Q48.**
 
@@ -1912,6 +2371,14 @@ Books table:
 |3|"The Hobbit"|2019-06-10|
 |4|"13 Reasons Why"|2019-06-01|
 |5|"The Hunger Games"|2008-09-21|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q49.**
 
 Table: Enrollments
@@ -1947,6 +2414,14 @@ Output:
 |1|2|99|
 |2|2|95|
 |3|3|82|
+```sql
+
+```
+<pre>
+
+</pre>
+
+---
 **Q50.**
 
 Table: Teams
@@ -2014,4 +2489,14 @@ Output:
 |1|15|
 |2|35|
 |3|40|
+
+```sql
+
+
+```
+<pre>
+
+</pre>
+
+---
 
