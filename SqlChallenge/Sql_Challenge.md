@@ -204,10 +204,18 @@ The CITY table is described as follows:
 +-------------+------+------+-----+---------+-------+</pre>
 
 ```sql
-
+SELECT * FROM City WHERE COUNTRYCODE = "JPN";
 ```
 <pre>
-
++------+----------+-------------+-----------+------------+
+| ID   | NAME     | COUNTRYCODE | DISTRICT  | POPULATION |
++------+----------+-------------+-----------+------------+
+| 1613 | Neyagawa | JPN         | Osaka     | 257315     |
+| 1630 | Ageo     | JPN         | Saitama   | 209442     |
+| 1661 | Sayama   | JPN         | Saitama   | 162472     |
+| 1681 | Omuta    | JPN         | Fukuoka   | 142889     |
+| 1739 | Tokuyama | JPN         | Yamaguchi | 107078     |
++------+----------+-------------+-----------+------------+
 </pre>
 
 ---
@@ -227,10 +235,18 @@ The CITY table is described as follows:
 +-------------+------+------+-----+---------+-------+</pre>
 
 ```sql
-
+SELECT NAME FROM City WHERE COUNTRYCODE = "JPN";
 ```
 <pre>
-
++----------+
+| NAME     |
++----------+
+| Neyagawa |
+| Ageo     |
+| Sayama   |
+| Omuta    |
+| Tokuyama |
++----------+
 </pre>
 
 ---
