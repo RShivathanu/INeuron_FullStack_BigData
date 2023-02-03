@@ -1,11 +1,14 @@
 # Sql Session 4
-## Update,delete,Alter,DDL vs DMl, truncate vs delete
+## Update, delete, Alter, DDL vs DMl, Truncate vs Delete
 
 ### CRUD OPERATIONS
 
 create - Insert
+
 read - select
+
 update - update
+
 delete - delete
 
 ```sql
@@ -18,22 +21,22 @@ CREATE TABLE employee (
     salary int NOT NULL,
     location varchar(20) NOT NULL DEFAULT 'bangalore'
 );
-
+```
+* > Created a table employee.
+```sql
 INSERT INTO employee (id,firstname,lastname,age,salary) VALUES (1,'naveen','pattai',24,20000);
 
-mysql> INSERT INTO employee (id,firstname,lastname,age,salary) VALUES (1,'naveen','pattai',24,20000);
-Query OK, 1 row affected (0.01 sec)
+INSERT INTO employee (id,firstname,lastname,age,salary) VALUES (2,'naresh','kumar',23,20000);
 
-mysql> INSERT INTO employee (id,firstname,lastname,age,salary) VALUES (2,'naresh','kumar',23,20000);
-Query OK, 1 row affected (0.03 sec)
-
-mysql> INSERT INTO employee (id,firstname,lastname,age,salary) VALUES (3,'akshar','SP',23,20000);
-
+INSERT INTO employee (id,firstname,lastname,age,salary) VALUES (3,'akshar','SP',23,20000);
+```
+* > Inserted few records into the employee table.
+```sql
 select firstname from employee  where firstName = 'Naveen';
 ```
 
-* **note-** by default data in database is case insensitive.
-> if u want to change to case sensitive add binary to the query
+* **Note :-** By default data in database is case insensitive.
+> If u want to change to case sensitive add binary to the query
 
 ```sql
 select firstname from employee  where binary firstname = 'naveen';
