@@ -1119,23 +1119,27 @@ You can write two separate queries to get the desired output. It need not be a s
 > below is the query and output table for the shortest city name.
 
 ```sql
-select City, min(length(City)) from station group by City order by (length(City)) limit 1;
+select City, length(City) as shortest from station order by length(City) asc, city asc limit 1;
 ```
 <pre>
-+------+-------------------+
-| City | Min(length(City)) |
-+------+-------------------+
-| Roy  |                 3 |
-+------+-------------------+
++------+----------+
+| City | shortest |
++------+----------+
+| Amo  |        3 |
++------+----------+
 </pre>
 
-> below is the query and output table for the shortest city name.
+> below is the query and output table for the longest city name.
 
-```
-
+```sql
+select City, length(City) as longest from station order by length(City) desc, city asc limit 1;
 ```
 <pre>
-
++--------------------+---------+
+| City               | longest |
++--------------------+---------+
+| West Baden Springs |      18 |
++--------------------+---------+
 </pre>
 
 ---
