@@ -1,4 +1,4 @@
-# Foreign Key Constraint complete demomenstration
+# Foreign Key Constraint complete demonstration
 
 > Here, we already created employee table
 ```sql
@@ -112,3 +112,61 @@ ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint f
 * Constraints are used to limit the type of data that can go into a table.
 * This ensures the accuracy and reliability of the data is maintained.
 * If there is any violation then the action is aborted
+---
+
+# session - 7 
+
+> Below is the employee table
+
+<pre>
++----+-----------+----------+-----+--------+---------+
+| id | firstname | lastname | age | salary | dept_id |
++----+-----------+----------+-----+--------+---------+
+|  1 | naveen    | pattai   |  24 |  20000 |       1 |
+|  2 | naresh    | kumar    |  24 |  20000 |       2 |
+|  3 | naveen    | pattai   |  24 |  20000 |    NULL |
+|  4 | praveen   | pattai   |  24 |  20000 |    NULL |
+|  5 | kavya     | pattai   |  24 |  20000 |    NULL |
+|  6 | akshar    | pattai   |  24 |  20000 |    NULL |
++----+-----------+----------+-----+--------+---------+
+</pre>
+
+```sql
+mysql> select DISTINCT firstname from employee  order by id desc;
+ERROR 3065 (HY000): Expression #1 of ORDER BY clause is not in SELECT list, references column 'trendytech.employee.id' which is not in SELECT list; this is incompatible with DISTINCT
+```
+> The above query gives error because we are doing **DISTNICT AND ORDER**  in the same query.
+we will discuss about this further
+
+> To discuss about this we have to know **order of execution**.
+
+```sql
+SELECT firstname FROM employee;
+```
+* The **order of execution** for above query is below.
+    
+        -> FROM (LOADING THE TABLE)
+        -> SELECT (PROJECTING firstname)
+---
+
+> Below is the query and table to show order of execution for order by 
+
+```SQL
+SELECT id, firstname FROM table order by id desc;
+```
+<pre>
++----+-----------+
+| id | firstname |
++----+-----------+
+|  6 | akshar    |
+|  5 | kavya     |
+|  4 | praveen   |
+|  3 | naveen    |
+|  2 | naresh    |
+|  1 | naveen    |
++----+-----------+</pre>
+* The **order of execution** for ***ORDER BY***.
+
+        -> FROM (LOADING THE TABLE)
+        -> SELECT (PROJECTING firstname)
+        -> 
