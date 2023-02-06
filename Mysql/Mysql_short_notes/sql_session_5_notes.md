@@ -133,8 +133,9 @@ ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint f
 
 ```sql
 mysql> select DISTINCT firstname from employee  order by id desc;
-ERROR 3065 (HY000): Expression #1 of ORDER BY clause is not in SELECT list, references column 'trendytech.employee.id' which is not in SELECT list; this is incompatible with DISTINCT
 ```
+> ERROR 3065 (HY000): Expression #1 of ORDER BY clause is not in SELECT list, references column 'trendytech.employee.id' which is not in SELECT list; this is incompatible with DISTINCT
+
 > The above query gives error because we are doing **DISTNICT AND ORDER**  in the same query.
 we will discuss about this further
 
@@ -152,21 +153,113 @@ SELECT firstname FROM employee;
 > Below is the query and table to show order of execution for order by 
 
 ```SQL
-SELECT id, firstname FROM table order by id desc;
+SELECT firstname FROM employee order by id desc;
 ```
 <pre>
-+----+-----------+
-| id | firstname |
-+----+-----------+
-|  6 | akshar    |
-|  5 | kavya     |
-|  4 | praveen   |
-|  3 | naveen    |
-|  2 | naresh    |
-|  1 | naveen    |
-+----+-----------+</pre>
++-----------+
+| firstname |
++-----------+
+| akshar    |
+| kavya     |
+| praveen   |
+| naveen    |
+| naresh    |
+| naveen    |
++-----------+</pre>
 * The **order of execution** for ***ORDER BY***.
 
-        -> FROM (LOADING THE TABLE)
-        -> SELECT (PROJECTING firstname)
-        -> 
+1. FROM (LOADING THE TABLE)
+        
+        select * from employee;
+
+2. SELECT (PROJECTING firstname, id )
+        
+        select firstname, id FROM employee;
+
+> Here, In main select state we didnt selected column **id** for projection, but we mentioned that query should **Order By column id**. So without **column id** we can't use orderBy.
+
+> In proactive way, the system automatically projects the id column with firstname like mentioned below.
+        
+        select firstname, id FROM employee;
+
+3. Order By (based on **column id** it will Order By)
+
+        SELECT firstname, id FROM employee ORDER BY id;
+
+> From here, after execution of order by **id column will be removed or discarded from the projection** only the below select statement will be displayed.
+
+        SELECT firstname FROM employee;
+---
+
+## Using DISTINCT and ORDER BY in same Query
+
+```sql
+SELECT DISTINCT firstname FROM employee order by id desc;
+```
+> ERROR 3065 (HY000): Expression #1 of ORDER BY clause is not in SELECT list, references column 'trendytech.employee.id' which is not in SELECT list; this is incompatible with DISTINCT
+
+###  Why it is not working??
+
+> Let us see the source/order of execution for above statement.
+
+1. FROM (LOADING THE TABLE)
+        
+        select * from employee;
+
+2. SELECT (PROJECTING firstname, id )
+        
+        select firstname, id FROM employee;
+
+1. DISTINCT 
+
+       SELECT DISTINCT firstname from employee;
+<pre>
++-----------+
+| firstname |
++-----------+
+| naveen    |
+| naresh    |
+| praveen   |
+| kavya     |
+| akshar    |
++-----------+
+</pre>
+
+        SELECT DISTINCT firstname, id FROM employee;
+<pre>
++-----------+----+
+| firstname | id |
++-----------+----+
+| naveen    |  1 |
+| naresh    |  2 |
+| naveen    |  3 |
+| praveen   |  4 |
+| kavya     |  5 |
+| akshar    |  6 |
++-----------+----+       
+</pre>
+
+* > Here, **DISTINCT** works on combination of 2 columns(firstname,id).
+
+* > So the result will not be accurate.
+
+* > Check the above 2 table mentioned, the result varies we used **DISTINCT** in both the table, but the both tables result is different.
+
+* > So, logically what we are trying to achieve went wrong.
+
+* > Sql should not give wrong output, That's why **sql is showing an error** while using **DISTINCT & ORDER BY** in the same statement.
+
+* > The query and error mentioned below.
+
+
+```sql
+SELECT DISTINCT firstname FROM employee order by id desc;
+```
+> ERROR 3065 (HY000): Expression #1 of ORDER BY clause is not in SELECT list, references column 'trendytech.employee.id' which is not in SELECT list; this is incompatible with DISTINCT
+
+
+
+4. ORDER BY (based on **column id** it will Order By)
+
+         SELECT firstname, id FROM employee ORDER BY id;
+---
