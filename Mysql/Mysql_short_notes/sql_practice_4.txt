@@ -1,0 +1,353 @@
+# Database Creation, table creation, inserting values
+
+### Create table student
+
+mysql> create table students (student_id int AUTO_INCREMENT PRIMARY KEY,student_fname varchar(30) NOT NULL, student_lname varchar(30) NOT NULL, student_mname varchar(30), student_email varchar(30) NOT NULL,  student_phone varchar(30) NOT NULL, student_alternate_phone varchar(15), enrollment_date TIMESTAMP NOT NULL DEFAULT NOW(), years_of_exp int NOT NULL, student_company varchar(30), batch_date varchar(30) NOT NULL, source_of_joining varchar(30) NOT NULL, location varchar(30) NOT NULL );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc students;
++-------------------------+-------------+------+-----+-------------------+-------------------+
+| Field                   | Type        | Null | Key | Default           | Extra             |
++-------------------------+-------------+------+-----+-------------------+-------------------+
+| student_id              | int         | NO   | PRI | NULL              | auto_increment    |
+| student_fname           | varchar(30) | NO   |     | NULL              |                   |
+| student_lname           | varchar(30) | NO   |     | NULL              |                   |
+| student_mname           | varchar(30) | YES  |     | NULL              |                   |
+| student_email           | varchar(30) | NO   |     | NULL              |                   |
+| student_phone           | varchar(30) | NO   |     | NULL              |                   |
+| student_alternate_phone | varchar(15) | YES  |     | NULL              |                   |
+| enrollment_date         | timestamp   | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| years_of_exp            | int         | NO   |     | NULL              |                   |
+| student_company         | varchar(30) | YES  |     | NULL              |                   |
+| batch_date              | varchar(30) | NO   |     | NULL              |                   |
+| source_of_joining       | varchar(30) | NO   |     | NULL              |                   |
+| location                | varchar(30) | NO   |     | NULL              |                   |
++-------------------------+-------------+------+-----+-------------------+-------------------+
+13 rows in set (0.00 sec)
+
+### Insert statements for student table
+
+mysql> insert into students (student_fname,student_lname,student_email,student_phone,years_of_exp,     student_company ,batch_date,source_of_joining, location) values ('rohit','sharma', 'rohit@gmail.com','9999911111',6,'walmart','5-02-2023','linkedin','bangalore' );
+
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into students(student_fname, student_lname, student_email, student_phone,     years_of_exp,  student_company ,  batch_date, source_of_joining, location ) values (     'virat', 'kohli','virat@gmail.com', '9999900000', 3, 'flipkart', '5-02-2023', 'linkedin',     'hyderabad' );
+
+mysql> insert into students(     student_fname,     student_lname,     student_email ,student_phone,     years_of_exp,     batch_date,     source_of_joining,     location ) values (     'shikhar',     'dhawan',     'dhawan@gmail.com',     '9999922222',     12,     '19-02-2023',     'google',     'bangalore' );
+
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(     student_fname,     student_lname,     student_email ,student_phone,     years_of_exp,     student_company ,     batch_date,     source_of_joining,     location ) values (     'rahul',     'dravid',     'rahul@gmail.com',     '9999933333',     8,     'walmart',     '19-02-2023',     'quora',     'chennai' );
+
+Query OK, 1 row affected (0.01 sec)
+
+### Multiple Insert values in same statement.
+
+mysql> insert into students(student_fname, student_lname, student_email, student_phone, years_of_exp, student_company, batch_date, source_of_joining, location) values ('kapil',  'dev', 'kapil@gmail.com','9999944444', 15, 'microsoft','5-02-2023','friend', 'pune' ), (     'brian', 'lara', 'brian@gmail.com', '9999955555', 18, 'tcs','5-02-2023','youtube', 'pune'), ( 'carl', 'hooper','carl@gmail.com','9999966666', 20, 'wipro', '19-02-2023', 'youtube', 'pune' ), ('saurabh', 'ganguly', 'saurabh@gmail.com', '9999977777', 14, 'wipro', '19-02-2023','google', 'chennai');
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+
+mysql> select student_id, student_fname from students;
++------------+---------------+
+| student_id | student_fname |
++------------+---------------+
+|          1 | rohit         |
+|          2 | virat         |
+|          3 | shikhar       |
+|          9 | rahul         |
+|         10 | kapil         |
+|         11 | brian         |
+|         12 | carl          |
+|         13 | saurabh       |
++------------+---------------+
+8 rows in set (0.00 sec)
+
+
+
+Advance DataTypes
+
+1. Decimal
+
+create table courses(
+course_id int NOT NULL,
+course_name varchar(30) NOT NULL,
+course_duration_months decimal(3,1) NOT NULL,
+course_fee int NOT NULL,
+changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+PRIMARY KEY(course_id)
+);
+
+> Here for TimeStamp dataType we can use now()
+
+insert into courses values (1, 'big data', 5.5, 50000);
+
++-----------+-----------------+------------------------+------------+
+| course_id | course_name     | course_duration_months | course_fee |
++-----------+-----------------+------------------------+------------+
+|         1 | big data        |                    5.5 |      50000 |
+|         2 | web development |                    3.0 |      20000 |
++-----------+-----------------+------------------------+------------+
+
+> Here, course_duration_months is in decimal type i.e for big data is 5.5 months.
+
+
+2. TIMESTAMP
+
+* TIMESTAMP dataType is used to keep the record of updates in the table.
+
+* It is used in audit history purposes to keep the record of data insertion, updation and deletion.
+
+> Syntax
+
+    column name TIMESTAMP  
+
+> TIMESTAMP practice
+
+
+    insert into courses
+    (
+        course_id,
+        course_name,
+        course_duration_months,
+        course_fee
+    )
+    values (
+        4,
+        'devops',
+        5,
+        30000
+    );
+
+
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    6.0 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    4.0 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+
+
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+
+| course_id | course_name     | course_duration_months | course_fee |
++-----------+-----------------+------------------------+------------+
+|         1 | big data        |                    5.5 |      50000 |
+|         2 | web development |                    3.0 |      20000 |
+|         3 | data science    |                    3.5 |      50000 |
++-----------+-----------------+------------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> desc courses;
++------------------------+--------------+------+-----+---------+-------+
+| Field                  | Type         | Null | Key | Default | Extra |
++------------------------+--------------+------+-----+---------+-------+
+| course_id              | int          | NO   | PRI | NULL    |       |
+| course_name            | varchar(30)  | NO   |     | NULL    |       |
+| course_duration_months | decimal(3,1) | NO   |     | NULL    |       |
+| course_fee             | int          | NO   |     | NULL    |       |
++------------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses add column changed_at TIMESTAMP DEFAULT NOW() ;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC courses;
++------------------------+--------------+------+-----+-------------------+-------------------+
+| Field                  | Type         | Null | Key | Default           | Extra             |
++------------------------+--------------+------+-----+-------------------+-------------------+
+| course_id              | int          | NO   | PRI | NULL              |                   |
+| course_name            | varchar(30)  | NO   |     | NULL              |                   |
+| course_duration_months | decimal(3,1) | NO   |     | NULL              |                   |
+| course_fee             | int          | NO   |     | NULL              |                   |
+| changed_at             | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------------------+--------------+------+-----+-------------------+-------------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    5.5 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    3.5 |      50000 | 2023-02-07 20:16:17 |
++-----------+-----------------+------------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into courses
+    -> (
+    ->     course_id,
+    ->     course_name,
+    ->     course_duration_months,
+    ->     course_fee
+    -> )
+    -> values (
+    ->     4,
+    ->     'devops',
+    ->     5,
+    ->     30000
+    -> );
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    5.5 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    3.5 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses modify course_duration_months int;
+Query OK, 4 rows affected (0.08 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                      6 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                      3 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                      4 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                      5 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses modify course_duration_months decimal(3,1);
+Query OK, 4 rows affected (0.07 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    6.0 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    4.0 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses drop column changed_at;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+> Here I dropped column changed_at which I have created before.
+
+mysql> desc courses;
++------------------------+--------------+------+-----+---------+-------+
+| Field                  | Type         | Null | Key | Default | Extra |
++------------------------+--------------+------+-----+---------+-------+
+| course_id              | int          | NO   | PRI | NULL    |       |
+| course_name            | varchar(30)  | NO   |     | NULL    |       |
+| course_duration_months | decimal(3,1) | YES  |     | NULL    |       |
+| course_fee             | int          | NO   |     | NULL    |       |
++------------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses add column changed_at TIMESTAMP DEFAULT NOW() ON UPDATE NOW();
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+> Now again, I have added the column with default constraint and update query. 
+
+mysql> DESC courses;
++------------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| Field                  | Type         | Null | Key | Default           | Extra                                         |
++------------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| course_id              | int          | NO   | PRI | NULL              |                                               |
+| course_name            | varchar(30)  | NO   |     | NULL              |                                               |
+| course_duration_months | decimal(3,1) | YES  |     | NULL              |                                               |
+| course_fee             | int          | NO   |     | NULL              |                                               |
+| changed_at             | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++------------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    6.0 |      50000 | 2023-02-08 00:25:52 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-08 00:25:52 |
+|         3 | data science    |                    4.0 |      50000 | 2023-02-08 00:25:52 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-08 00:25:52 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> update courses set course_fee = 40000 where course_id = 2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+> In below table we can see the changes on changed_at column after the update query has generated.
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    6.0 |      50000 | 2023-02-08 00:25:52 |
+|         2 | web development |                    3.0 |      40000 | 2023-02-08 00:28:28 |
+|         3 | data science    |                    4.0 |      50000 | 2023-02-08 00:25:52 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-08 00:25:52 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+# Logical Operators in Mysql
+
+// To get the people who are working in bangalore
+
+mysql> select student_fname, student_email,student_company from students where location = 'bangalore';
++---------------+------------------+-----------------+
+| student_fname | student_email    | student_company |
++---------------+------------------+-----------------+
+| rohit         | rohit@gmail.com  | walmart         |
+| shikhar       | dhawan@gmail.com | NULL            |
++---------------+------------------+-----------------+
+2 rows in set (0.00 sec)
+
+// To get the people who are not working in bangalore
+
+mysql> select student_fname, student_email,student_company from students where location != 'bangalore';
++---------------+-------------------+-----------------+
+| student_fname | student_email     | student_company |
++---------------+-------------------+-----------------+
+| virat         | virat@gmail.com   | flipkart        |
+| rahul         | rahul@gmail.com   | walmart         |
+| kapil         | kapil@gmail.com   | microsoft       |
+| brian         | brian@gmail.com   | tcs             |
+| carl          | carl@gmail.com    | wipro           |
+| saurabh       | saurabh@gmail.com | wipro           |
++---------------+-------------------+-----------------+
+6 rows in set (0.00 sec)
+
+// get all courses which has the word 'data'
+
+mysql> select * from courses where course_name like '%data%';
++-----------+--------------+------------------------+------------+---------------------+
+| course_id | course_name  | course_duration_months | course_fee | changed_at          |
++-----------+--------------+------------------------+------------+---------------------+
+|         1 | big data     |                    6.0 |      50000 | 2023-02-08 00:25:52 |
+|         3 | data science |                    4.0 |      50000 | 2023-02-08 00:25:52 |
++-----------+--------------+------------------------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+// get all courses which do not have the word 'data'
+
+mysql> select * from courses where course_name not like '%data%';
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         2 | web development |                    3.0 |      40000 | 2023-02-08 00:28:28 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-08 00:25:52 |
++-----------+-----------------+------------------------+------------+---------------------+
+2 rows in set (0.00 sec)
+
+//all students from bangalore who joined through linkedin and have less than 8 years of experience
+
