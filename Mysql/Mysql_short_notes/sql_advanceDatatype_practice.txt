@@ -77,6 +77,9 @@ mysql> alter table courses modify course_duration_months int;
 Query OK, 4 rows affected (0.08 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 
+> I made a changes in above table which will reflect below.
+> Here, I modified course_duration_months datatype from decimal to int.
+
 mysql> select * from courses;
 +-----------+-----------------+------------------------+------------+---------------------+
 | course_id | course_name     | course_duration_months | course_fee | changed_at          |
