@@ -1,0 +1,154 @@
+# Database Creation, table creation, inserting values
+
+### Create table student
+
+mysql> create table students (student_id int AUTO_INCREMENT PRIMARY KEY,student_fname varchar(30) NOT NULL, student_lname varchar(30) NOT NULL, student_mname varchar(30), student_email varchar(30) NOT NULL,  student_phone varchar(30) NOT NULL, student_alternate_phone varchar(15), enrollment_date TIMESTAMP NOT NULL DEFAULT NOW(), years_of_exp int NOT NULL, student_company varchar(30), batch_date varchar(30) NOT NULL, source_of_joining varchar(30) NOT NULL, location varchar(30) NOT NULL );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc students;
++-------------------------+-------------+------+-----+-------------------+-------------------+
+| Field                   | Type        | Null | Key | Default           | Extra             |
++-------------------------+-------------+------+-----+-------------------+-------------------+
+| student_id              | int         | NO   | PRI | NULL              | auto_increment    |
+| student_fname           | varchar(30) | NO   |     | NULL              |                   |
+| student_lname           | varchar(30) | NO   |     | NULL              |                   |
+| student_mname           | varchar(30) | YES  |     | NULL              |                   |
+| student_email           | varchar(30) | NO   |     | NULL              |                   |
+| student_phone           | varchar(30) | NO   |     | NULL              |                   |
+| student_alternate_phone | varchar(15) | YES  |     | NULL              |                   |
+| enrollment_date         | timestamp   | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| years_of_exp            | int         | NO   |     | NULL              |                   |
+| student_company         | varchar(30) | YES  |     | NULL              |                   |
+| batch_date              | varchar(30) | NO   |     | NULL              |                   |
+| source_of_joining       | varchar(30) | NO   |     | NULL              |                   |
+| location                | varchar(30) | NO   |     | NULL              |                   |
++-------------------------+-------------+------+-----+-------------------+-------------------+
+13 rows in set (0.00 sec)
+
+### Insert statements for student table
+
+mysql> insert into students (student_fname,student_lname,student_email,student_phone,years_of_exp,     student_company ,batch_date,source_of_joining, location) values ('rohit','sharma', 'rohit@gmail.com','9999911111',6,'walmart','5-02-2023','linkedin','bangalore' );
+
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into students(student_fname, student_lname, student_email, student_phone,     years_of_exp,  student_company ,  batch_date, source_of_joining, location ) values (     'virat', 'kohli','virat@gmail.com', '9999900000', 3, 'flipkart', '5-02-2023', 'linkedin',     'hyderabad' );
+
+mysql> insert into students(     student_fname,     student_lname,     student_email ,student_phone,     years_of_exp,     batch_date,     source_of_joining,     location ) values (     'shikhar',     'dhawan',     'dhawan@gmail.com',     '9999922222',     12,     '19-02-2023',     'google',     'bangalore' );
+
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into students(     student_fname,     student_lname,     student_email ,student_phone,     years_of_exp,     student_company ,     batch_date,     source_of_joining,     location ) values (     'rahul',     'dravid',     'rahul@gmail.com',     '9999933333',     8,     'walmart',     '19-02-2023',     'quora',     'chennai' );
+
+Query OK, 1 row affected (0.01 sec)
+
+### Multiple Insert values in same statement.
+
+```sql
+insert into students(     student_fname,     student_lname,     student_email ,student_phone,     years_of_exp,     student_company ,     batch_date,     source_of_joining,     location ) values (     'rahul',     'dravid',     'rahul@gmail.com',     '9999933333',     8,     'walmart',     '19-02-2023',     'quora',     'chennai' );
+```
+
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+
+| course_id | course_name     | course_duration_months | course_fee |
++-----------+-----------------+------------------------+------------+
+|         1 | big data        |                    5.5 |      50000 |
+|         2 | web development |                    3.0 |      20000 |
+|         3 | data science    |                    3.5 |      50000 |
++-----------+-----------------+------------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> desc courses;
++------------------------+--------------+------+-----+---------+-------+
+| Field                  | Type         | Null | Key | Default | Extra |
++------------------------+--------------+------+-----+---------+-------+
+| course_id              | int          | NO   | PRI | NULL    |       |
+| course_name            | varchar(30)  | NO   |     | NULL    |       |
+| course_duration_months | decimal(3,1) | NO   |     | NULL    |       |
+| course_fee             | int          | NO   |     | NULL    |       |
++------------------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses add column changed_at TIMESTAMP DEFAULT NOW() ;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC courses;
++------------------------+--------------+------+-----+-------------------+-------------------+
+| Field                  | Type         | Null | Key | Default           | Extra             |
++------------------------+--------------+------+-----+-------------------+-------------------+
+| course_id              | int          | NO   | PRI | NULL              |                   |
+| course_name            | varchar(30)  | NO   |     | NULL              |                   |
+| course_duration_months | decimal(3,1) | NO   |     | NULL              |                   |
+| course_fee             | int          | NO   |     | NULL              |                   |
+| changed_at             | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------------------+--------------+------+-----+-------------------+-------------------+
+5 rows in set (0.01 sec)
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    5.5 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    3.5 |      50000 | 2023-02-07 20:16:17 |
++-----------+-----------------+------------------------+------------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql>  insert into courses
+    -> (
+    ->     course_id,
+    ->     course_name,
+    ->     course_duration_months,
+    ->     course_fee
+    -> )
+    -> values (
+    ->     4,
+    ->     'devops',
+    ->     5,
+    ->     30000
+    -> );
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    5.5 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    3.5 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses modify course_duration_months int;
+Query OK, 4 rows affected (0.08 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                      6 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                      3 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                      4 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                      5 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table courses modify course_duration_months decimal(3,1);
+Query OK, 4 rows affected (0.07 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from courses;
++-----------+-----------------+------------------------+------------+---------------------+
+| course_id | course_name     | course_duration_months | course_fee | changed_at          |
++-----------+-----------------+------------------------+------------+---------------------+
+|         1 | big data        |                    6.0 |      50000 | 2023-02-07 20:16:17 |
+|         2 | web development |                    3.0 |      20000 | 2023-02-07 20:16:17 |
+|         3 | data science    |                    4.0 |      50000 | 2023-02-07 20:16:17 |
+|         4 | devops          |                    5.0 |      30000 | 2023-02-07 20:21:33 |
++-----------+-----------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+
+create table dummy( course_id int NOT NULL, course_name varchar(30) NOT NULL, course_duration_months decimal(3,1) NOT NULL, course_fee int NOT NULL, PRIMARY KEY(course_id) );
