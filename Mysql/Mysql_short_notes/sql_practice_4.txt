@@ -1,9 +1,22 @@
 # Database Creation, table creation, inserting values
 
 ### Create table student
-
-mysql> create table students (student_id int AUTO_INCREMENT PRIMARY KEY,student_fname varchar(30) NOT NULL, student_lname varchar(30) NOT NULL, student_mname varchar(30), student_email varchar(30) NOT NULL,  student_phone varchar(30) NOT NULL, student_alternate_phone varchar(15), enrollment_date TIMESTAMP NOT NULL DEFAULT NOW(), years_of_exp int NOT NULL, student_company varchar(30), batch_date varchar(30) NOT NULL, source_of_joining varchar(30) NOT NULL, location varchar(30) NOT NULL );
-Query OK, 0 rows affected (0.03 sec)
+'''sql
+create table students (
+    student_id int AUTO_INCREMENT PRIMARY KEY,
+    student_fname varchar(30) NOT NULL, 
+    student_lname varchar(30) NOT NULL, 
+    student_mname varchar(30), 
+    student_email varchar(30) NOT NULL,  
+    student_phone varchar(30) NOT NULL, 
+    student_alternate_phone varchar(15), 
+    enrollment_date TIMESTAMP NOT NULL DEFAULT NOW(), 
+    years_of_exp int NOT NULL, 
+    student_company varchar(30), 
+    batch_date varchar(30) NOT NULL, 
+    source_of_joining varchar(30) NOT NULL, 
+    location varchar(30) NOT NULL );
+```
 
 mysql> desc students;
 +-------------------------+-------------+------+-----+-------------------+-------------------+
@@ -301,6 +314,10 @@ mysql> select * from courses;
 
 # Logical Operators in Mysql
 
+// select statement to view particular columns in the table.
+
+mysql> select student_fname, student_email, years_of_exp, source_of_joining, location from students;
+
 // To get the people who are working in bangalore
 
 mysql> select student_fname, student_email,student_company from students where location = 'bangalore';
@@ -351,3 +368,41 @@ mysql> select * from courses where course_name not like '%data%';
 
 //all students from bangalore who joined through linkedin and have less than 8 years of experience
 
+select * from students where years_of_exp < 8 and source_of_joining = 'linkedin' and location = 'bangalore';
+
+//get list of students who are working for flipkart, walmart or microsoft
+
+> Using OR operator
+
+select student_fname, student_email,student_company,  years_of_exp, source_of_joining, location from students where student_company = 'flipkart' or student_company = 'walmart' or student_company = 'microsoft';
++---------------+-----------------+-----------------+--------------+-------------------+-----------+
+| student_fname | student_email   | student_company | years_of_exp | source_of_joining | location  |
++---------------+-----------------+-----------------+--------------+-------------------+-----------+
+| rohit         | rohit@gmail.com | walmart         |            6 | linkedin          | bangalore |
+| virat         | virat@gmail.com | flipkart        |            3 | linkedin          | hyderabad |
+| rahul         | rahul@gmail.com | walmart         |            8 | quora             | chennai   |
+| kapil         | kapil@gmail.com | microsoft       |           15 | friend            | pune      |
++---------------+-----------------+-----------------+--------------+-------------------+-----------+
+
+> Using IN operator
+ 
+mysql> select student_fname, student_email,student_company,  years_of_exp, source_of_joining, location from students where student_company IN ('flipkart','microsoft','walmart');
++---------------+-----------------+-----------------+--------------+-------------------+-----------+
+| student_fname | student_email   | student_company | years_of_exp | source_of_joining | location  |
++---------------+-----------------+-----------------+--------------+-------------------+-----------+
+| rohit         | rohit@gmail.com | walmart         |            6 | linkedin          | bangalore |
+| virat         | virat@gmail.com | flipkart        |            3 | linkedin          | hyderabad |
+| rahul         | rahul@gmail.com | walmart         |            8 | quora             | chennai   |
+| kapil         | kapil@gmail.com | microsoft       |           15 | friend            | pune      |
++---------------+-----------------+-----------------+--------------+-------------------+-----------+
+
+// Not working in any company 
+
+mysql> select student_fname, student_email,student_company,  years_of_exp, source_of_joining, location from students where student_company NOT IN ('flipkart','microsoft','walmart');
++---------------+-------------------+-----------------+--------------+-------------------+----------+
+| student_fname | student_email     | student_company | years_of_exp | source_of_joining | location |
++---------------+-------------------+-----------------+--------------+-------------------+----------+
+| brian         | brian@gmail.com   | tcs             |           18 | youtube           | pune     |
+| carl          | carl@gmail.com    | wipro           |           20 | youtube           | pune     |
+| saurabh       | saurabh@gmail.com | wipro           |           14 | google            | chennai  |
++---------------+-------------------+-----------------+--------------+-------------------+----------+
