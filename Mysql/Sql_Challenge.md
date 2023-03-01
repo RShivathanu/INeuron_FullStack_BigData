@@ -17,7 +17,8 @@ The CITY table is described as follows:
 SELECT * FROM City 
 WHERE COUNTRYCODE = "USA" AND POPULATION > 100000;
 ```
-<pre>+------+---------------+-------------+------------+------------+
+<pre>
++------+---------------+-------------+------------+------------+
 | ID   | NAME          | COUNTRYCODE | DISTRICT   | POPULATION |
 +------+---------------+-------------+------------+------------+
 | 3815 | El Paso       | USA         | Texas      | 563662     |
@@ -26,7 +27,8 @@ WHERE COUNTRYCODE = "USA" AND POPULATION > 100000;
 | 3973 | Concord       | USA         | California | 121780     |
 | 3977 | Cedar Rapids  | USA         | Iowa       | 120758     |
 | 3982 | Coral Springs | USA         | Florida    | 117549     |
-+------+---------------+-------------+------------+------------+</pre>
++------+---------------+-------------+------------+------------+
+</pre>
 
 
 
@@ -34,7 +36,8 @@ WHERE COUNTRYCODE = "USA" AND POPULATION > 100000;
 
 The CITY table is described as follows:
 
-<pre>+-------------+------+------+-----+---------+-------+
+<pre>
++-------------+------+------+-----+---------+-------+
 | Field       | Type | Null | Key | Default | Extra |
 +-------------+------+------+-----+---------+-------+
 | ID          | int  | YES  |     | NULL    |       |
@@ -42,7 +45,8 @@ The CITY table is described as follows:
 | COUNTRYCODE | text | YES  |     | NULL    |       |
 | DISTRICT    | text | YES  |     | NULL    |       |
 | POPULATION  | text | YES  |     | NULL    |       |
-+-------------+------+------+-----+---------+-------+</pre>
++-------------+------+------+-----+---------+-------+
+</pre>
 ```sql
 SELECT NAME FROM City 
 WHERE COUNTRYCODE = "USA" AND POPULATION > 120000;
@@ -61,7 +65,8 @@ WHERE COUNTRYCODE = "USA" AND POPULATION > 120000;
 
 
 ## **Q3.** Query all columns (attributes) for every row in the CITY table. The CITY table is described as follows:
-<pre>+-------------+------+------+-----+---------+-------+
+<pre>
++-------------+------+------+-----+---------+-------+
 | Field       | Type | Null | Key | Default | Extra |
 +-------------+------+------+-----+---------+-------+
 | ID          | int  | YES  |     | NULL    |       |
@@ -69,7 +74,8 @@ WHERE COUNTRYCODE = "USA" AND POPULATION > 120000;
 | COUNTRYCODE | text | YES  |     | NULL    |       |
 | DISTRICT    | text | YES  |     | NULL    |       |
 | POPULATION  | text | YES  |     | NULL    |       |
-+-------------+------+------+-----+---------+-------+</pre>
++-------------+------+------+-----+---------+-------+
+</pre>
 ```sql
 SELECT * FROM City;
 ```
@@ -224,7 +230,8 @@ SELECT * FROM City WHERE COUNTRYCODE = "JPN";
 
 The CITY table is described as follows:
 
-<pre>+-------------+------+------+-----+---------+-------+
+<pre>
++-------------+------+------+-----+---------+-------+
 | Field       | Type | Null | Key | Default | Extra |
 +-------------+------+------+-----+---------+-------+
 | ID          | int  | YES  |     | NULL    |       |
@@ -232,7 +239,8 @@ The CITY table is described as follows:
 | COUNTRYCODE | text | YES  |     | NULL    |       |
 | DISTRICT    | text | YES  |     | NULL    |       |
 | POPULATION  | text | YES  |     | NULL    |       |
-+-------------+------+------+-----+---------+-------+</pre>
++-------------+------+------+-----+---------+-------+
+</pre>
 
 ```sql
 SELECT NAME FROM City WHERE COUNTRYCODE = "JPN";
@@ -298,492 +306,6 @@ mysql> select City,State from station;
 | Chelsea            | IA    |
 | Chignik Lagoon     | AK    |
 | Pelahatchie        | MS    |
-| Hanna City         | IL    |
-| Dorrance           | KS    |
-| Albany             | CA    |
-| Monument           | KS    |
-| Manchester         | MD    |
-| Prescott           | IA    |
-| Graettinger        | IA    |
-| Cahone             | CO    |
-| Sturgis            | MS    |
-| Upperco            | MD    |
-| Highwood           | IL    |
-| Waipahu            | HI    |
-| Bowdon             | GA    |
-| Tyler              | MN    |
-| Watkins            | CO    |
-| Republic           | MI    |
-| Millville          | CA    |
-| Aguanga            | CA    |
-| Bowdon Junction    | GA    |
-| Morenci            | AZ    |
-| South El Monte     | CA    |
-| Hoskinston         | KY    |
-| Talbert            | KY    |
-| Mccomb             | MS    |
-| Kirk               | CO    |
-| Carlock            | IL    |
-| Seward             | IL    |
-| Gustine            | CA    |
-| Delano             | CA    |
-| Westphalia         | MI    |
-| Saint Elmo         | AL    |
-| Roy                | MT    |
-| Pattonsburg        | MO    |
-| Centertown         | MO    |
-| Norvell            | MI    |
-| Raymondville       | MO    |
-| Beaver Island      | MI    |
-| Odin               | IL    |
-| Jemison            | AL    |
-| West Hills         | CA    |
-| Barrigada          | GU    |
-| Hesperia           | CA    |
-| Wickliffe          | KY    |
-| Culdesac           | ID    |
-| Roselawn           | IN    |
-| Forest Lakes       | AZ    |
-| San Simeon         | CA    |
-| Little Rock        | AR    |
-| Portland           | AR    |
-| New Century        | KS    |
-| Hampden            | MA    |
-| Pine City          | MN    |
-| Sandborn           | IN    |
-| Seaton             | IL    |
-| Milledgeville      | IL    |
-| East China         | MI    |
-| Prince Frederick   | MD    |
-| Pomona Park        | FL    |
-| Gretna             | LA    |
-| Yazoo City         | MS    |
-| Zionsville         | IN    |
-| Rio Oso            | CA    |
-| Jolon              | CA    |
-| Childs             | MD    |
-| Shreveport         | LA    |
-| Forest             | MS    |
-| Sizerock           | KY    |
-| Buffalo Creek      | CO    |
-| Algonac            | MI    |
-| Onaway             | MI    |
-| Irvington          | IL    |
-| Winsted            | MN    |
-| Woodbury           | GA    |
-| Samantha           | AL    |
-| Hackleburg         | AL    |
-| Soldier            | KS    |
-| Arrowsmith         | IL    |
-| Columbus           | GA    |
-| Bentonville        | AR    |
-| Kirkland           | AZ    |
-| Grosse Pointe      | MI    |
-| Wilton             | ME    |
-| Busby              | MT    |
-| Robertsdale        | AL    |
-| Dale               | IN    |
-| Reeds              | MO    |
-| Hayfork            | CA    |
-| Mcbrides           | MI    |
-| Lee Center         | IL    |
-| Tennessee          | IL    |
-| Henderson          | IA    |
-| Udall              | KS    |
-| Palm Desert        | CA    |
-| Benedict           | KS    |
-| Oakfield           | ME    |
-| Tamms              | IL    |
-| Haubstadt          | IN    |
-| Chokio             | MN    |
-| Clancy             | MT    |
-| Scotts Valley      | CA    |
-| Norwood            | MN    |
-| Elkton             | MD    |
-| Bertha             | MN    |
-| Bridgeport         | MI    |
-| Cherry             | IL    |
-| Regina             | KY    |
-| Griffin            | GA    |
-| Pine Bluff         | AR    |
-| Mascotte           | FL    |
-| Baldwin            | MD    |
-| Netawaka           | KS    |
-| East Irvine        | CA    |
-| Pony               | MT    |
-| Franklin           | LA    |
-| Amo                | IN    |
-| Vulcan             | MO    |
-| Prairie Du Rocher  | IL    |
-| Alanson            | MI    |
-| Delta              | LA    |
-| Carver             | MN    |
-| Paron              | AR    |
-| Winchester         | ID    |
-| Jerome             | AZ    |
-| Baton Rouge        | LA    |
-| Greenview          | CA    |
-| Lucerne Valley     | CA    |
-| Cromwell           | MN    |
-| Quinter            | KS    |
-| Whitewater         | MO    |
-| Round Pond         | ME    |
-| Clarkdale          | AZ    |
-| Rockton            | IL    |
-| Pheba              | MS    |
-| Eleele             | HI    |
-| Auburn             | IA    |
-| North Berwick      | ME    |
-| Oconee             | GA    |
-| Grandville         | MI    |
-| Susanville         | CA    |
-| Rosie              | AR    |
-| Verona             | MO    |
-| Richland           | GA    |
-| Fremont            | MI    |
-| Philipsburg        | MT    |
-| Kensett            | IA    |
-| De Tour Village    | MI    |
-| Koleen             | IN    |
-| Winslow            | IL    |
-| Reasnor            | IA    |
-| West Grove         | IA    |
-| Frankfort Heights  | IL    |
-| Bono               | AR    |
-| Biggsville         | IL    |
-| Linthicum Heights  | MD    |
-| Amazonia           | MO    |
-| Marysville         | MI    |
-| Cape Girardeau     | MO    |
-| Pengilly           | MN    |
-| Newton Center      | MA    |
-| Crane Lake         | MN    |
-| Newbury            | MA    |
-| Kismet             | KS    |
-| Canton             | ME    |
-| Clipper Mills      | CA    |
-| Grayslake          | IL    |
-| Pierre Part        | LA    |
-| Bison              | KS    |
-| Bellevue           | KY    |
-| Ridgway            | CO    |
-| South Britain      | CT    |
-| Rydal              | GA    |
-| Lynnville          | KY    |
-| Deerfield          | MO    |
-| Montreal           | MO    |
-| Hope               | MN    |
-| Aliso Viejo        | CA    |
-| Gowrie             | IA    |
-| Andersonville      | GA    |
-| Knob Lick          | KY    |
-| Crouseville        | ME    |
-| Cranks             | KY    |
-| Rives Junction     | MI    |
-| Ledyard            | CT    |
-| Norway             | ME    |
-| Eros               | LA    |
-| Rantoul            | KS    |
-| Richmond Hill      | GA    |
-| Fredericktown      | MO    |
-| Arkadelphia        | AR    |
-| Glen Carbon        | IL    |
-| Fredericksburg     | IN    |
-| Manchester         | IA    |
-| Mc Henry           | MD    |
-| Eriline            | KY    |
-| Wellington         | KY    |
-| Hoffman Estates    | IL    |
-| Howard Lake        | MN    |
-| Edgewater          | MD    |
-| Ducor              | CA    |
-| Salem              | KY    |
-| Sturdivant         | MO    |
-| Hagatna            | GU    |
-| East Haddam        | CT    |
-| Eastlake           | MI    |
-| Larkspur           | CA    |
-| Patriot            | IN    |
-| Corriganville      | MD    |
-| Carlos             | MN    |
-| Addison            | MI    |
-| Tarzana            | CA    |
-| Grapevine          | AR    |
-| Kanorado           | KS    |
-| Climax             | MI    |
-| Curdsville         | KY    |
-| Southport          | CT    |
-| Compton            | IL    |
-| Notasulga          | AL    |
-| Rumsey             | KY    |
-| Rogers             | CT    |
-| Pleasant Grove     | AR    |
-| Everton            | MO    |
-| Skanee             | MI    |
-| Springerville      | AZ    |
-| Libertytown        | MD    |
-| Church Creek       | MD    |
-| Yellow Pine        | ID    |
-| Dumont             | MN    |
-| Gales Ferry        | CT    |
-| Ravenna            | KY    |
-| Williams           | AZ    |
-| Decatur            | MI    |
-| Holbrook           | AZ    |
-| Sherrill           | AR    |
-| Brownsdale         | MN    |
-| Linden             | MI    |
-| Sedgwick           | AR    |
-| Fort Atkinson      | IA    |
-| Peachtree City     | GA    |
-| Rocheport          | MO    |
-| West Somerset      | KY    |
-| Clovis             | CA    |
-| Heyburn            | ID    |
-| Peabody            | KS    |
-| Marion Junction    | AL    |
-| Randall            | KS    |
-| Hayesville         | IA    |
-| Jordan             | MN    |
-| White Horse  Beach | MA    |
-| Greenville         | IL    |
-| Macy               | IN    |
-| Flowood            | MS    |
-| Deep River         | IA    |
-| Napoleon           | IN    |
-| Leavenworth        | IN    |
-| Coldwater          | KS    |
-| Weldon             | CA    |
-| Yellville          | AR    |
-| Turners Falls      | MA    |
-| Delray Beach       | FL    |
-| Eustis             | FL    |
-| Mineral Point      | MO    |
-| Weldona            | CO    |
-| Midpines           | CA    |
-| Cascade            | ID    |
-| Tefft              | IN    |
-| Showell            | MD    |
-| Bayville           | ME    |
-| Brighton           | IL    |
-| Grimes             | IA    |
-| Nubieber           | CA    |
-| North Monmouth     | ME    |
-| Harmony            | MN    |
-| Beaufort           | MO    |
-| Arispe             | IA    |
-| Union Star         | MO    |
-| Humeston           | IA    |
-| Baileyville        | IL    |
-| Lakeville          | CT    |
-| Firebrick          | KY    |
-| Pico Rivera        | CA    |
-| Ludington          | MI    |
-| Channing           | MI    |
-| West Baden Springs | IN    |
-| Pawnee             | IL    |
-| Melber             | KY    |
-| Manchester         | MN    |
-| Bainbridge         | GA    |
-| Sanders            | AZ    |
-| Ottertail          | MN    |
-| Dupo               | IL    |
-| Montrose           | CA    |
-| Schleswig          | IA    |
-| Harbor Springs     | MI    |
-| Richmond           | IL    |
-| Ermine             | KY    |
-| Siler              | KY    |
-| Reeves             | LA    |
-| Clifton            | AZ    |
-| Casco              | MI    |
-| Sturgis            | MI    |
-| Crescent City      | FL    |
-| Madisonville       | LA    |
-| Albion             | IN    |
-| Lismore            | MN    |
-| Athens             | IN    |
-| Eufaula            | AL    |
-| Panther Burn       | MS    |
-| Hanscom Afb        | MA    |
-| Wildie             | KY    |
-| Mosca              | CO    |
-| Bennington         | IN    |
-| Lottie             | LA    |
-| Garland            | ME    |
-| Clutier            | IA    |
-| Lupton             | MI    |
-| Northfield         | MN    |
-| Daleville          | AL    |
-| Osage City         | KS    |
-| Cuba               | MO    |
-| Norris             | MT    |
-| Clopton            | AL    |
-| Renville           | MN    |
-| Saint Paul         | KS    |
-| Kirksville         | MO    |
-| Kingsland          | AR    |
-| Fairview           | KS    |
-| Lydia              | LA    |
-| Bridgton           | ME    |
-| Brownstown         | IL    |
-| Monona             | IA    |
-| Hartland           | MI    |
-| Andover            | CT    |
-| Lakota             | IA    |
-| Grand Terrace      | CA    |
-| Mesick             | MI    |
-| Dryden             | MI    |
-| Beverly            | KY    |
-| Pocahontas         | IL    |
-| Fort Meade         | FL    |
-| Hayneville         | AL    |
-| Yoder              | IN    |
-| Gatewood           | MO    |
-| Madden             | MS    |
-| Losantville        | IN    |
-| Cheswold           | DE    |
-| Caseville          | MI    |
-| Pomona             | MO    |
-| Hopkinsville       | KY    |
-| Jack               | AL    |
-| Dixie              | GA    |
-| Hillside           | CO    |
-| Hawarden           | IA    |
-| Cannonsburg        | MI    |
-| Osborne            | KS    |
-| Elm Grove          | LA    |
-| Atlantic Mine      | MI    |
-| North Branford     | CT    |
-| New Liberty        | IA    |
-| Woodstock Valley   | CT    |
-| Farmington         | IL    |
-| Honolulu           | HI    |
-| Pfeifer            | KS    |
-| Oshtemo            | MI    |
-| Gridley            | KS    |
-| Fulton             | KY    |
-| Winter Park        | FL    |
-| Monroe             | LA    |
-| Del Mar            | CA    |
-| Greens Fork        | IN    |
-| Garden City        | AL    |
-| Blue River         | KY    |
-| New Ross           | IN    |
-| Brilliant          | AL    |
-| Archie             | MO    |
-| Winslow            | AR    |
-| Olmitz             | KS    |
-| Allerton           | IA    |
-| Norphlet           | AR    |
-| Mechanic Falls     | ME    |
-| North Middletown   | KY    |
-| Keyes              | CA    |
-| Equality           | AL    |
-| Neon               | KY    |
-| Calhoun            | KY    |
-| Alpine             | AR    |
-| Mullan             | ID    |
-| Coalgood           | KY    |
-| Walnut             | MS    |
-| Saint Petersburg   | FL    |
-| Ojai               | CA    |
-| Julian             | CA    |
-| Veedersburg        | IN    |
-| Orange Park        | FL    |
-| Payson             | AZ    |
-| Windom             | KS    |
-| Urbana             | IA    |
-| Ludlow             | CA    |
-| Lindsay            | MT    |
-| Palatka            | FL    |
-| Bristol            | ME    |
-| Harmony            | IN    |
-| Ukiah              | CA    |
-| Yuma               | AZ    |
-| Alba               | MI    |
-| Zachary            | LA    |
-| Esmond             | IL    |
-| Waresboro          | GA    |
-| Hills              | MN    |
-| Montgomery City    | MO    |
-| Delavan            | MN    |
-| Magnolia           | MS    |
-| Byron              | CA    |
-| Dundee             | IA    |
-| Eureka Springs     | AR    |
-| Baker              | CA    |
-| Hyde Park          | MA    |
-| Groveoak           | AL    |
-| Kenner             | LA    |
-| Many               | LA    |
-| Seward             | AK    |
-| Berryton           | KS    |
-| Chilhowee          | MO    |
-| Newark             | IL    |
-| Cowgill            | MO    |
-| Novinger           | MO    |
-| Goodman            | MS    |
-| Cobalt             | CT    |
-| South Haven        | MI    |
-| Eskridge           | KS    |
-| Bennington         | KS    |
-| Decatur            | MS    |
-| West Hyannisport   | MA    |
-| Ozona              | FL    |
-| Jackson            | AL    |
-| Lapeer             | MI    |
-| Peaks Island       | ME    |
-| Hazlehurst         | MS    |
-| Chester            | CA    |
-| Clarkston          | MI    |
-| Healdsburg         | CA    |
-| Hotchkiss          | CO    |
-| Ravenden Springs   | AR    |
-| Monroe             | AR    |
-| Payson             | IL    |
-| Kell               | IL    |
-| Strasburg          | CO    |
-| Five Points        | AL    |
-| Norris City        | IL    |
-| Coaling            | AL    |
-| Orange City        | IA    |
-| Effingham          | KS    |
-| Corcoran           | CA    |
-| Garden City        | IA    |
-| Alton              | MO    |
-| Greenway           | AR    |
-| Woodsboro          | MD    |
-| Strawn             | IL    |
-| Dent               | MN    |
-| Shingletown        | CA    |
-| Clio               | IA    |
-| Yalaha             | FL    |
-| Leakesville        | MS    |
-| Fort Lupton        | CO    |
-| Shasta             | CA    |
-| Canton             | MN    |
-| Agency             | MO    |
-| South Carrollton   | KY    |
-| Taft               | CA    |
-| Calpine            | CA    |
-| Knobel             | AR    |
-| Bullhead City      | AZ    |
-| Tina               | MO    |
-| Anthony            | KS    |
-| Emmett             | ID    |
-| South Haven        | MN    |
-| Haverhill          | IA    |
-| Middleboro         | MA    |
-| Siloam             | GA    |
-| Lena               | LA    |
-| Lee                | IL    |
-| Freeport           | MI    |
-| Mid Florida        | FL    |
-| Acme               | LA    |
-| Gorham             | KS    |
-| Bass Harbor        | ME    |
-| Granger            | IA    |
 +--------------------+-------+
 </pre>
 
@@ -826,228 +348,6 @@ select distinct City from station where Id % 2 = 0;
 | Watkins            |
 | Millville          |
 | Aguanga            |
-| Morenci            |
-| Mccomb             |
-| Gustine            |
-| Delano             |
-| Roy                |
-| Pattonsburg        |
-| Centertown         |
-| Norvell            |
-| Raymondville       |
-| West Hills         |
-| Wickliffe          |
-| Forest Lakes       |
-| Little Rock        |
-| Hampden            |
-| Pine City          |
-| Prince Frederick   |
-| Yazoo City         |
-| Jolon              |
-| Childs             |
-| Shreveport         |
-| Forest             |
-| Sizerock           |
-| Onaway             |
-| Hackleburg         |
-| Bentonville        |
-| Kirkland           |
-| Grosse Pointe      |
-| Busby              |
-| Robertsdale        |
-| Hayfork            |
-| Mcbrides           |
-| Henderson          |
-| Palm Desert        |
-| Benedict           |
-| Oakfield           |
-| Chokio             |
-| Clancy             |
-| Norwood            |
-| Elkton             |
-| Cherry             |
-| Regina             |
-| Pine Bluff         |
-| East Irvine        |
-| Pony               |
-| Franklin           |
-| Amo                |
-| Vulcan             |
-| Prairie Du Rocher  |
-| Delta              |
-| Carver             |
-| Paron              |
-| Greenview          |
-| Cromwell           |
-| Round Pond         |
-| Rockton            |
-| Pheba              |
-| North Berwick      |
-| Oconee             |
-| Grandville         |
-| Richland           |
-| Philipsburg        |
-| Frankfort Heights  |
-| Bono               |
-| Biggsville         |
-| Newton Center      |
-| Crane Lake         |
-| Kismet             |
-| Grayslake          |
-| Bison              |
-| Bellevue           |
-| South Britain      |
-| Rydal              |
-| Lynnville          |
-| Hope               |
-| Andersonville      |
-| Crouseville        |
-| Ledyard            |
-| Eros               |
-| Rantoul            |
-| Glen Carbon        |
-| Mc Henry           |
-| Howard Lake        |
-| Salem              |
-| Sturdivant         |
-| East Haddam        |
-| Eastlake           |
-| Larkspur           |
-| Tarzana            |
-| Grapevine          |
-| Kanorado           |
-| Climax             |
-| Curdsville         |
-| Southport          |
-| Compton            |
-| Rumsey             |
-| Rogers             |
-| Pleasant Grove     |
-| Everton            |
-| Skanee             |
-| Church Creek       |
-| Yellow Pine        |
-| Dumont             |
-| Gales Ferry        |
-| Decatur            |
-| Holbrook           |
-| Sherrill           |
-| Brownsdale         |
-| Peachtree City     |
-| Rocheport          |
-| Clovis             |
-| Heyburn            |
-| Marion Junction    |
-| Randall            |
-| White Horse  Beach |
-| Macy               |
-| Deep River         |
-| Napoleon           |
-| Leavenworth        |
-| Turners Falls      |
-| Delray Beach       |
-| Eustis             |
-| Mineral Point      |
-| Bayville           |
-| North Monmouth     |
-| Harmony            |
-| Beaufort           |
-| Firebrick          |
-| Pico Rivera        |
-| Ludington          |
-| West Baden Springs |
-| Melber             |
-| Bainbridge         |
-| Ottertail          |
-| Montrose           |
-| Schleswig          |
-| Ermine             |
-| Siler              |
-| Lismore            |
-| Athens             |
-| Eufaula            |
-| Hanscom Afb        |
-| Mosca              |
-| Bennington         |
-| Lottie             |
-| Garland            |
-| Clutier            |
-| Lupton             |
-| Daleville          |
-| Osage City         |
-| Norris             |
-| Saint Paul         |
-| Kirksville         |
-| Bridgton           |
-| Brownstown         |
-| Grand Terrace      |
-| Mesick             |
-| Dryden             |
-| Hayneville         |
-| Cheswold           |
-| Cannonsburg        |
-| Elm Grove          |
-| Atlantic Mine      |
-| Farmington         |
-| Winter Park        |
-| Monroe             |
-| Greens Fork        |
-| Garden City        |
-| New Ross           |
-| Archie             |
-| Norphlet           |
-| Keyes              |
-| Neon               |
-| Calhoun            |
-| Mullan             |
-| Walnut             |
-| Saint Petersburg   |
-| Julian             |
-| Orange Park        |
-| Ludlow             |
-| Palatka            |
-| Ukiah              |
-| Yuma               |
-| Alba               |
-| Zachary            |
-| Montgomery City    |
-| Magnolia           |
-| Dundee             |
-| Baker              |
-| Kenner             |
-| Many               |
-| Seward             |
-| Chilhowee          |
-| Cobalt             |
-| South Haven        |
-| Eskridge           |
-| West Hyannisport   |
-| Ozona              |
-| Healdsburg         |
-| Ravenden Springs   |
-| Kell               |
-| Strasburg          |
-| Five Points        |
-| Norris City        |
-| Coaling            |
-| Orange City        |
-| Effingham          |
-| Greenway           |
-| Shingletown        |
-| Clio               |
-| Yalaha             |
-| Leakesville        |
-| Fort Lupton        |
-| Canton             |
-| Taft               |
-| Knobel             |
-| Bullhead City      |
-| Haverhill          |
-| Middleboro         |
-| Lee                |
-| Mid Florida        |
-| Gorham             |
-| Bass Harbor        |
 +--------------------+
 </pre>
 
@@ -1165,10 +465,37 @@ The STATION table is described as follows:
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 ```sql
-
+select distinct City 
+from station
+where lower(substr(City,1,1)) 
+in 
+('a','e','i','o','u');
 ```
+> Here, substr func is used to break the string into single character and then using **IN** operator it will search for the character present in the keyword.
 <pre>
-
++----------------+
+| City           |
++----------------+
+| Arlington      |
+| Albany         |
+| Upperco        |
+| Aguanga        |
+| Odin           |
+| East China     |
+| Algonac        |
+| Onaway         |
+| Irvington      |
+| Arrowsmith     |
+| Udall          |
+| Oakfield       |
+| Elkton         |
+| East Irvine    |
+| Amo            |
+| Alanson        |
+| Eleele         |
+| Auburn         |
+| Oconee         |
++----------------+
 </pre>
 
 ---
@@ -1194,10 +521,33 @@ The STATION table is described as follows:
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 ```sql
-
+select distinct City 
+from station 
+where lower(substr(City,-1,1)) 
+IN
+('a','e','i','o','u');
 ```
 <pre>
-
++-----------------+
+| City            |
++-----------------+
+| Glencoe         |
+| Chelsea         |
+| Pelahatchie     |
+| Dorrance        |
+| Cahone          |
+| Upperco         |
+| Waipahu         |
+| Millville       |
+| Aguanga         |
+| Morenci         |
+| South El Monte  |
+| Gustine         |
+| Delano          |
+| Westphalia      |
+| Saint Elmo      |
+| Raymondville    |
++-----------------+
 </pre>
 
 ---
@@ -1223,10 +573,28 @@ The STATION table is described as follows:
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 ```sql
-
+select distinct City 
+from station
+where lower(substr(City,1,1)) 
+NOT IN 
+('a','e','i','o','u')
+limit 10;
 ```
 <pre>
-
++----------------+
+| City           |
++----------------+
+| Kissee Mills   |
+| Loma Mar       |
+| Sandy Hook     |
+| Tipton         |
+| Turner         |
+| Slidell        |
+| Negreet        |
+| Glencoe        |
+| Chelsea        |
+| Chignik Lagoon |
++----------------+
 </pre>
 
 ---
@@ -1252,10 +620,28 @@ The STATION table is described as follows:
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 ```sql
-
+select distinct City 
+from station 
+where lower(substr(City,-1,1)) 
+NOT IN
+('a','e','i','o','u')
+LIMIT 10;
 ```
 <pre>
-
++----------------+
+| City           |
++----------------+
+| Kissee Mills   |
+| Loma Mar       |
+| Sandy Hook     |
+| Tipton         |
+| Arlington      |
+| Turner         |
+| Slidell        |
+| Negreet        |
+| Chignik Lagoon |
+| Hanna City     |
++----------------+
 </pre>
 
 ---
@@ -1281,10 +667,37 @@ The STATION table is described as follows:
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 ```sql
-
+select distinct City 
+from station
+where substr(City,1,1) 
+NOT IN 
+('a','e','i','o','u')
+OR
+lower(substr(City, -1,1))
+NOT IN
+('a','e','i','o','u')
+LIMIT 15;
 ```
 <pre>
-
++----------------+
+| City           |
++----------------+
+| Kissee Mills   |
+| Loma Mar       |
+| Sandy Hook     |
+| Tipton         |
+| Arlington      |
+| Turner         |
+| Slidell        |
+| Negreet        |
+| Glencoe        |
+| Chelsea        |
+| Chignik Lagoon |
+| Pelahatchie    |
+| Hanna City     |
+| Dorrance       |
+| Albany         |
++----------------+
 </pre>
 
 ---
@@ -1310,10 +723,37 @@ The STATION table is described as follows:
 where LAT\_N is the northern latitude and LONG\_W is the western longitude.
 
 ```sql
-
+select distinct City 
+from station
+where substr(City,1,1) 
+NOT IN 
+('a','e','i','o','u')
+AND
+lower(substr(City, -1,1))
+NOT IN
+('a','e','i','o','u')
+LIMIT 15;
 ```
 <pre>
-
++----------------+
+| City           |
++----------------+
+| Kissee Mills   |
+| Loma Mar       |
+| Sandy Hook     |
+| Tipton         |
+| Turner         |
+| Slidell        |
+| Negreet        |
+| Chignik Lagoon |
+| Hanna City     |
+| Monument       |
+| Manchester     |
+| Prescott       |
+| Graettinger    |
+| Sturgis        |
+| Highwood       |
++----------------+
 </pre>
 
 ---
@@ -1327,7 +767,8 @@ Table: Product
 |product\_id|int|
 |product\_name|varchar|
 |unit\_price|int|
-product\_id is the primary key of this table.
+
+product_id is the primary key of this table.
 
 Each row of this table indicates the name and the price of each product.
 
@@ -1341,6 +782,7 @@ Table: Sales
 |sale\_date|date|
 |quantity|int|
 |price|int|
+
 This table has no primary key, it can have repeated rows.
 
 
