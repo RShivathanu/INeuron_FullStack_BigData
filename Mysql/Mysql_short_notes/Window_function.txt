@@ -1,0 +1,157 @@
+Database changed
+mysql> select * from epmloyees;
+ERROR 1146 (42S02): Table 'Ineuron.epmloyees' doesn't exist
+mysql> select * from employees;
++--------+--------+-----------+
+| emp_id | salary | dept_name |
++--------+--------+-----------+
+|      1 |  10000 | Software  |
+|      2 |  11000 | Software  |
+|      3 |  11000 | Software  |
+|      4 |  11000 | Software  |
+|      5 |  15000 | Finance   |
+|      6 |  15000 | Finance   |
+|      7 |  15000 | IT        |
+|      8 |  12000 | HR        |
+|      9 |  12000 | HR        |
+|     10 |  11000 | HR        |
++--------+--------+-----------+
+10 rows in set (0.00 sec)
+mysql> select student.student_fname, courses.course_id, courses.course_name f
+    -> select student.student_fname, courses.course_id, courses.course_name from student join courses on courses.course_id = student.selected_course;
+    -> 
+    -> ;
+ERROR 1109 (42S02): Unknown table 'student' in field list
+mysql> 
+mysql> show tables;
++-------------------+
+| Tables_in_Ineuron |
++-------------------+
+| employees         |
+| station           |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> select *,
+    -> row_number() over(partition by dept_name order by salary desc) as sal_rank from employees;
++--------+--------+-----------+----------+
+| emp_id | salary | dept_name | sal_rank |
++--------+--------+-----------+----------+
+|      5 |  15000 | Finance   |        1 |
+|      6 |  15000 | Finance   |        2 |
+|      8 |  12000 | HR        |        1 |
+|      9 |  12000 | HR        |        2 |
+|     10 |  11000 | HR        |        3 |
+|      7 |  15000 | IT        |        1 |
+|      2 |  11000 | Software  |        1 |
+|      3 |  11000 | Software  |        2 |
+|      4 |  11000 | Software  |        3 |
+|      1 |  10000 | Software  |        4 |
++--------+--------+-----------+----------+
+10 rows in set (0.01 sec)
+
+mysql> select * from ( select *, row_number() over(partition by dept_name order by salary desc) as s
+al_rank from employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select * from ( select *, row_number() over(partition by dept_name order by salary desc) as sal_rank from employees) as temp
+    -> where sal_rank = 1;
++--------+--------+-----------+----------+
+| emp_id | salary | dept_name | sal_rank |
++--------+--------+-----------+----------+
+|      5 |  15000 | Finance   |        1 |
+|      8 |  12000 | HR        |        1 |
+|      7 |  15000 | IT        |        1 |
+|      2 |  11000 | Software  |        1 |
++--------+--------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select *,
+    -> dense_rank() over (partition by dept_name order by salary desc) as sal_dense from employees;
++--------+--------+-----------+-----------+
+| emp_id | salary | dept_name | sal_dense |
++--------+--------+-----------+-----------+
+|      5 |  15000 | Finance   |         1 |
+|      6 |  15000 | Finance   |         1 |
+|      8 |  12000 | HR        |         1 |
+|      9 |  12000 | HR        |         1 |
+|     10 |  11000 | HR        |         2 |
+|      7 |  15000 | IT        |         1 |
+|      2 |  11000 | Software  |         1 |
+|      3 |  11000 | Software  |         1 |
+|      4 |  11000 | Software  |         1 |
+|      1 |  10000 | Software  |         2 |
++--------+--------+-----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from ( select *, dense_rank() over (partition by dept_name order by salary desc) as
+sal_dense from employees
+    -> ) as temp
+    -> where sal_dense = 1;
++--------+--------+-----------+-----------+
+| emp_id | salary | dept_name | sal_dense |
++--------+--------+-----------+-----------+
+|      5 |  15000 | Finance   |         1 |
+|      6 |  15000 | Finance   |         1 |
+|      8 |  12000 | HR        |         1 |
+|      9 |  12000 | HR        |         1 |
+|      7 |  15000 | IT        |         1 |
+|      2 |  11000 | Software  |         1 |
+|      3 |  11000 | Software  |         1 |
+|      4 |  11000 | Software  |         1 |
++--------+--------+-----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from ( select *, dense_rank() over (partition by dept_name order by salary desc) as
+sal_dense from employees ) as temp where sal_dense in (1,2);
++--------+--------+-----------+-----------+
+| emp_id | salary | dept_name | sal_dense |
++--------+--------+-----------+-----------+
+|      5 |  15000 | Finance   |         1 |
+|      6 |  15000 | Finance   |         1 |
+|      8 |  12000 | HR        |         1 |
+|      9 |  12000 | HR        |         1 |
+|     10 |  11000 | HR        |         2 |
+|      7 |  15000 | IT        |         1 |
+|      2 |  11000 | Software  |         1 |
+|      3 |  11000 | Software  |         1 |
+|      4 |  11000 | Software  |         1 |
+|      1 |  10000 | Software  |         2 |
++--------+--------+-----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from ( select *, dense_rank() over (partition by dept_name order by salary desc) as
+sal_dense from employees ) as temp where sal_dense <= 2;
++--------+--------+-----------+-----------+
+| emp_id | salary | dept_name | sal_dense |
++--------+--------+-----------+-----------+
+|      5 |  15000 | Finance   |         1 |
+|      6 |  15000 | Finance   |         1 |
+|      8 |  12000 | HR        |         1 |
+|      9 |  12000 | HR        |         1 |
+|     10 |  11000 | HR        |         2 |
+|      7 |  15000 | IT        |         1 |
+|      2 |  11000 | Software  |         1 |
+|      3 |  11000 | Software  |         1 |
+|      4 |  11000 | Software  |         1 |
+|      1 |  10000 | Software  |         2 |
++--------+--------+-----------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from ( select *, dense_rank() over (partition by dept_name order by salary desc) as
+sal_dense from employees ) as temp where temp.sal_dense <= 2;
++--------+--------+-----------+-----------+
+| emp_id | salary | dept_name | sal_dense |
++--------+--------+-----------+-----------+
+|      5 |  15000 | Finance   |         1 |
+|      6 |  15000 | Finance   |         1 |
+|      8 |  12000 | HR        |         1 |
+|      9 |  12000 | HR        |         1 |
+|     10 |  11000 | HR        |         2 |
+|      7 |  15000 | IT        |         1 |
+|      2 |  11000 | Software  |         1 |
+|      3 |  11000 | Software  |         1 |
+|      4 |  11000 | Software  |         1 |
+|      1 |  10000 | Software  |         2 |
++--------+--------+-----------+-----------+
+10 rows in set (0.00 sec)
+
