@@ -354,67 +354,225 @@ insert into daily_sales values('2022-03-14',600);
 insert into daily_sales values('2022-03-15',500);
 insert into daily_sales values('2022-03-16',200);
 ```
-
+```sql
 select * from daily_sales;
-
+```
+<pre>
++------------+--------------+
+| sales_date | sales_amount |
++------------+--------------+
+| 2022-03-11 |          400 |
+| 2022-03-12 |          500 |
+| 2022-03-13 |          300 |
+| 2022-03-14 |          600 |
+| 2022-03-15 |          500 |
+| 2022-03-16 |          200 |
++------------+--------------+
+</pre>
+```sql
 select *,
       lag(sales_amount, 1) over(order by sales_date) as pre_day_sales
 from daily_sales;
+```
 
-# we can use this to replace null with defualt value like 0
+<pre>
++------------+--------------+---------------+
+| sales_date | sales_amount | pre_day_sales |
++------------+--------------+---------------+
+| 2022-03-11 |          400 |          NULL |
+| 2022-03-12 |          500 |           400 |
+| 2022-03-13 |          300 |           500 |
+| 2022-03-14 |          600 |           300 |
+| 2022-03-15 |          500 |           600 |
+| 2022-03-16 |          200 |           500 |
++------------+--------------+---------------+
+</pre>
+
+* **lag() used to get the sales of the previous day.**
+
+### we can use this coalesce() function to replace null with defualt value like 0
+
+```sql
 select *,
 	coalesce(lag(sales_amount,1) over(order by sales_date), 0) as prev_sales
 from daily_sales;
+```
+<pre>
++------------+--------------+------------+
+| sales_date | sales_amount | prev_sales |
++------------+--------------+------------+
+| 2022-03-11 |          400 |          0 |
+| 2022-03-12 |          500 |        400 |
+| 2022-03-13 |          300 |        500 |
+| 2022-03-14 |          600 |        300 |
+| 2022-03-15 |          500 |        600 |
+| 2022-03-16 |          200 |        500 |
++------------+--------------+------------+
+</pre>
 
-# Query - Calculate the differnce of sales with previous day sales
-# Here null will be derived
+### Query - Calculate the differnce of sales with previous day sales
+* Here null will be derived
+
+```sql
 select sales_date,
        sales_amount as curr_day_sales,
        lag(sales_amount, 1) over(order by sales_date) as prev_day_sales,
        sales_amount - lag(sales_amount, 1) over(order by sales_date) as sales_diff
 from daily_sales;
+```
 
-# Here we can replace null with 0
+<pre>
++------------+----------------+----------------+------------+
+| sales_date | curr_day_sales | prev_day_sales | sales_diff |
++------------+----------------+----------------+------------+
+| 2022-03-11 |            400 |           NULL |       NULL |
+| 2022-03-12 |            500 |            400 |        100 |
+| 2022-03-13 |            300 |            500 |       -200 |
+| 2022-03-14 |            600 |            300 |        300 |
+| 2022-03-15 |            500 |            600 |       -100 |
+| 2022-03-16 |            200 |            500 |       -300 |
++------------+----------------+----------------+------------+
+</pre>
+
+
+### Here we can replace null with 0
+```sql
 select sales_date,
        sales_amount as curr_day_sales,
        lag(sales_amount, 1, 0) over(order by sales_date) as prev_day_sales,
        sales_amount - lag(sales_amount, 1, 0) over(order by sales_date) as sales_diff
 from daily_sales;
+```
+<pre>
++------------+----------------+----------------+------------+
+| sales_date | curr_day_sales | prev_day_sales | sales_diff |
++------------+----------------+----------------+------------+
+| 2022-03-11 |            400 |              0 |        400 |
+| 2022-03-12 |            500 |            400 |        100 |
+| 2022-03-13 |            300 |            500 |       -200 |
+| 2022-03-14 |            600 |            300 |        300 |
+| 2022-03-15 |            500 |            600 |       -100 |
+| 2022-03-16 |            200 |            500 |       -300 |
++------------+----------------+----------------+------------+
+</pre>
 
-# Diff between lead and lag
+### Diff between lead and lag
+
+```sql
 select *,
       lag(sales_amount, 1) over(order by sales_date) as pre_day_sales
 from daily_sales;
-
+```
+<pre>
++------------+--------------+---------------+
+| sales_date | sales_amount | pre_day_sales |
++------------+--------------+---------------+
+| 2022-03-11 |          400 |          NULL |
+| 2022-03-12 |          500 |           400 |
+| 2022-03-13 |          300 |           500 |
+| 2022-03-14 |          600 |           300 |
+| 2022-03-15 |          500 |           600 |
+| 2022-03-16 |          200 |           500 |
++------------+--------------+---------------+
+</pre>
+```sql
 select *,
       lead(sales_amount, 1) over(order by sales_date) as next_day_sales
 from daily_sales;
+```
+<pre>
++------------+--------------+----------------+
+| sales_date | sales_amount | next_day_sales |
++------------+--------------+----------------+
+| 2022-03-11 |          400 |            500 |
+| 2022-03-12 |          500 |            300 |
+| 2022-03-13 |          300 |            600 |
+| 2022-03-14 |          600 |            500 |
+| 2022-03-15 |          500 |            200 |
+| 2022-03-16 |          200 |           NULL |
++------------+--------------+----------------+
+</pre>
 
-create table employees(
+```sql
+create table employees1(
   emp_id int,
   emp_name varchar(50),
   mobile BIGINT,
   dept_name varchar(50),
   salary int 
 );
+```
+```sql
+insert into employees1 values(1,'Shashank',778768768,'Software',1000);
+insert into employees1 values(2,'Rahul',876778877,'IT',2000);
+insert into employees1 values(3,'Amit',098798998,'HR',5000);
+insert into employees1 values(4,'Nikhil',67766767,'IT',3000);
+```
+```sql
+select * from employees1;
+```
+<pre>
++--------+----------+-----------+-----------+--------+
+| emp_id | emp_name | mobile    | dept_name | salary |
++--------+----------+-----------+-----------+--------+
+|      1 | Shashank | 778768768 | Software  |   1000 |
+|      2 | Rahul    | 876778877 | IT        |   2000 |
+|      3 | Amit     |  98798998 | HR        |   5000 |
+|      4 | Nikhil   |  67766767 | IT        |   3000 |
++--------+----------+-----------+-----------+--------+
+</pre>
 
-insert into employees values(1,'Shashank',778768768,'Software',1000);
-insert into employees values(2,'Rahul',876778877,'IT',2000);
-insert into employees values(3,'Amit',098798998,'HR',5000);
-
-insert into employees values(4,'Nikhil',67766767,'IT',3000);
-
-select * from employees;
-
---- Create views in SQL
-create view employee_data_for_finance as select emp_id, emp_name,salary from employees;
-
+### Create views in SQL
+```sql
+create view employee_data_for_finance 
+as 
+select emp_id, emp_name,salary 
+from employees1;
+```
+```sql
 select * from employee_data_for_finance;
+```
+<pre>
++--------+----------+--------+
+| emp_id | emp_name | salary |
++--------+----------+--------+
+|      1 | Shashank |   1000 |
+|      2 | Rahul    |   2000 |
+|      3 | Amit     |   5000 |
+|      4 | Nikhil   |   3000 |
++--------+----------+--------+
+</pre>
 
---- Create logic for department wise salary sum
-create view department_wise_salary as select dept_name, sum(salary) from employees group by dept_name;
+
+### Create logic for department wise salary sum
+
+```sql
+create view department_wise_salary 
+as 
+select dept_name, sum(salary) 
+from employees1 
+group by dept_name;
+```
 
 drop view department_wise_salary;
 
-create view department_wise_salary as select dept_name, sum(salary) as total_salary from employees group by dept_name;
+```sql
+create view department_wise_salary 
+as 
+select dept_name, sum(salary) 
+as 
+total_salary 
+from employees1
+ group by dept_name;
+```
+<pre>
++-----------+--------------+
+| dept_name | total_salary |
++-----------+--------------+
+| Software  |         1000 |
+| IT        |         5000 |
+| HR        |         5000 |
++-----------+--------------+
+</pre>
+---
 
